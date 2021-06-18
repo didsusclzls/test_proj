@@ -34,7 +34,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class BoardController {
 	private BoardService service;
-	
+	private BoardService service2;
 	@GetMapping("/list") 
 	public void list(Criteria cri, Model model) {
 		log.info("list : "+cri);
@@ -44,7 +44,12 @@ public class BoardController {
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 		
 	}
-	
+	@GetMapping("/list2")
+	public void list2(Criteria cri, Model model) {
+		log.info("list2");
+//		model.addAttribute("list2",service2.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
