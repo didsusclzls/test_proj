@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="ko" class="">
+<head>
+<link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/lib/lightbox/css/lightbox.min.css" /><link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/style/content/font.css?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2" /><link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/style/content/content.css?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2" /><!--[if lt IE 9]><script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-1.12.4.min.js"></script><![endif]--><!--[if gte IE 9]>
+<!--><script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-3.2.1.min.js"></script><!--<![endif]-->
+<script src="https://t1.daumcdn.net/tistory_admin/lib/lightbox/js/lightbox-plus-jquery.min.js"></script>
+<script>
+lightbox.options.fadeDuration = 200;
+lightbox.options.resizeDuration = 200;
+lightbox.options.wrapAround = false;
+lightbox.options.albumLabel = "%1 / %2";
+</script>
+<script>var tjQuery = jQuery.noConflict(true);</script><style type="text/css">.tt_article_useless_p_margin p {padding-top:0 !important;padding-bottom:0 !important;margin-top:0 !important;margin-bottom:0 !important;}</style><meta name="referrer" content="always"><link rel="icon" href="https://tistory3.daumcdn.net/tistory/597870/favicon.ico" /><link rel="apple-touch-icon" href="//img1.daumcdn.net/thumb/C180x180/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F133256144C3CD3FB14">
+<link rel="apple-touch-icon" sizes="76x76" href="//img1.daumcdn.net/thumb/C76x76/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F133256144C3CD3FB14">
+<link rel="apple-touch-icon" sizes="120x120" href="//img1.daumcdn.net/thumb/C120x120/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F133256144C3CD3FB14">
+<link rel="apple-touch-icon" sizes="152x152" href="//img1.daumcdn.net/thumb/C152x152/?fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F133256144C3CD3FB14"><meta name="description" content="*해당 문서는 본인의 사견이 포함되어 있으므로, 정석이 아닌 점을 참고해주세요. 프로그램과 모듈 1. 프로그램 main이 포함되어 있어서 실행이 가능한 코드를 프로그램이라고 한다.  2. 모듈 아래와 같이 main이..">
+
+<!-- BEGIN OPENGRAPH -->
+<link rel="canonical" href="https://ondolroom.tistory.com/265" /><meta property="og:type" content="article"><meta property="og:url" content="https://ondolroom.tistory.com/265" ><meta property="og:site_name" content="Jaybon 의 지식창고" ><meta property="og:title" content="자바 프로그램을 함수화(모듈화) 하기 (프로젝트 대비)" ><meta name="by" content="Jaybon" ><meta property="og:description" content="*해당 문서는 본인의 사견이 포함되어 있으므로, 정석이 아닌 점을 참고해주세요. 프로그램과 모듈 1. 프로그램 main이 포함되어 있어서 실행이 가능한 코드를 프로그램이라고 한다.  2. 모듈 아래와 같이 main이.." ><meta property="og:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F7N7H4%2FbtqDHrGg7D5%2FS0RDm0aG6SIQLSyjy0MB4k%2Fimg.png" >
+<!-- END OPENGRAPH -->
+
+
+
+<!-- BEGIN TWITTERCARD -->
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@TISTORY"><meta name="twitter:title" content="자바 프로그램을 함수화(모듈화) 하기 (프로젝트 대비)" ><meta name="twitter:description" content="*해당 문서는 본인의 사견이 포함되어 있으므로, 정석이 아닌 점을 참고해주세요. 프로그램과 모듈 1. 프로그램 main이 포함되어 있어서 실행이 가능한 코드를 프로그램이라고 한다.  2. 모듈 아래와 같이 main이.." ><meta property="twitter:image" content="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F7N7H4%2FbtqDHrGg7D5%2FS0RDm0aG6SIQLSyjy0MB4k%2Fimg.png" >
+<!-- END TWITTERCARD -->
+
+
+
+<!-- BEGIN DAUMAPP -->
+<meta property="dg:plink" content="https://ondolroom.tistory.com/265" ><meta name="plink" content="https://ondolroom.tistory.com/265" ><meta name="title" content="자바 프로그램을 함수화(모듈화) 하기 (프로젝트 대비)" ><meta name="article:media_name" content="Jaybon 의 지식창고" ><meta property="article:mobile_url" content="https://ondolroom.tistory.com/m/265" ><meta property="article:pc_url" content="https://ondolroom.tistory.com/265" ><meta property="article:mobile_view_url" content="https://ondolroom.tistory.com/m/265" ><meta property="article:pc_view_url" content="https://ondolroom.tistory.com/265" ><meta property="article:talk_channel_view_url" content="https://ondolroom.tistory.com/m/265" ><meta property="article:pc_service_home" content="https://www.tistory.com" ><meta property="article:mobile_service_home" content="https://www.tistory.com/m" ><meta property="article:txid" content="597870_265" /><meta property="article:published_time" content="2020-04-25T13:28:51+09:00" ><meta property="og:regDate" content="20200425132851" ><meta property="article:modified_time" content="2020-04-27T09:42:58+09:00" >
+<!-- END DAUMAPP -->
+
+
+
+<!-- BEGIN STRUCTURED_DATA -->
+<script type="application/ld+json">{"@context":"http:\/\/schema.org","@type":"BlogPosting","mainEntityOfPage":{"@id":"https:\/\/ondolroom.tistory.com\/265"},"url":"https:\/\/ondolroom.tistory.com\/265","headline":"\uc790\ubc14 \ud504\ub85c\uadf8\ub7a8\uc744 \ud568\uc218\ud654(\ubaa8\ub4c8\ud654) \ud558\uae30 (\ud504\ub85c\uc81d\ud2b8 \ub300\ube44)","description":"*\ud574\ub2f9 \ubb38\uc11c\ub294 \ubcf8\uc778\uc758 \uc0ac\uacac\uc774 \ud3ec\ud568\ub418\uc5b4 \uc788\uc73c\ubbc0\ub85c, \uc815\uc11d\uc774 \uc544\ub2cc \uc810\uc744 \ucc38\uace0\ud574\uc8fc\uc138\uc694. \ud504\ub85c\uadf8\ub7a8\uacfc \ubaa8\ub4c8 1. \ud504\ub85c\uadf8\ub7a8 main\uc774 \ud3ec\ud568\ub418\uc5b4 \uc788\uc5b4\uc11c \uc2e4\ud589\uc774 \uac00\ub2a5\ud55c \ucf54\ub4dc\ub97c \ud504\ub85c\uadf8\ub7a8\uc774\ub77c\uace0 \ud55c\ub2e4.  2. \ubaa8\ub4c8 \uc544\ub798\uc640 \uac19\uc774 main\uc774..","author":{"@type":"Person","name":"Jaybon"},"image":{"@type":"ImageObject","url":"https:\/\/img1.daumcdn.net\/thumb\/R800x0\/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F7N7H4%2FbtqDHrGg7D5%2FS0RDm0aG6SIQLSyjy0MB4k%2Fimg.png","width":"800px","height":"800px"},"datePublished":"20200425T13:28:51+09:00","dateModified":"20200427T09:42:58+09:00","publisher":{"@type":"Organization","name":"TISTORY","logo":{"@type":"ImageObject","url":"https:\/\/t1.daumcdn.net\/tistory_admin\/static\/images\/openGraph\/opengraph.png","width":"800px","height":"800px"}}}</script><meta name="robots" content="max-image-preview:large">
+<!-- END STRUCTURED_DATA -->
+
+
+	<title>자바 프로그램을 함수화(모듈화) 하기 (프로젝트 대비) :: Jaybon 의 지식창고</title>
+<meta name="title" content="자바 프로그램을 함수화(모듈화) 하기 (프로젝트 대비) :: Jaybon 의 지식창고" />
+<meta name="description" Content="" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+
+<link rel="alternate" type="application/rss+xml" title="Jaybon 의 지식창고" href="https://ondolroom.tistory.com/rss" />
+<link rel="shortcut icon" href="/favicon.ico" />
+
+<link rel="stylesheet" href="https://tistory2.daumcdn.net/tistory/597870/skin/style.css?_T_=1586586794" />
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+<!--[if IE 7]>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome-ie7.min.css">
+<![endif]-->
+<link href="https://tistory2.daumcdn.net/tistory/597870/skin/images/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+
+<script>
+//추가 단축키
+var key = new Array();
+key['w'] = "/admin/entry/post/";
+key['e'] = "/admin/skin/edit/";
+key['r'] = "/admin/plugin/refererUrlLog/";
+key['h'] = "/";
+
+function getKey(keyStroke) {
+	if ((event.srcElement.tagName != 'INPUT') && (event.srcElement.tagName != 'TEXTAREA')){
+		isNetscape=(document.layers);
+		eventChooser = (isNetscape) ? keyStroke.which : event.keyCode;
+		which = String.fromCharCode(eventChooser).toLowerCase();
+		for (var i in key)
+			if (which == i) window.location = key[i];
+	}
+}
+document.onkeypress = getKey;
+</script>
+	
+	<!-- Line Number 적용 -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
+<script>hljs.initLineNumbersOnLoad();</script>
+	
+
+<style type="text/css">
+		#daumSearchBox {
+			height: 21px;
+			background-image : url(//i1.daumcdn.net/imgsrc.search/search_all/show/tistory/plugin/bg_search2_2.gif);
+			margin: 5px auto ;
+			padding: 0;
+		}
+		#daumSearchBox input {
+			background: none;
+			margin : 0;
+			padding : 0;
+			border : 0;
+		}
+		#daumSearchBox #daumLogo {
+			width: 34px;
+			height: 21px;
+			float: left;
+			margin-right: 5px;
+			background-image : url(//i1.daumcdn.net/img-media/tistory/img/bg_search1_2_2010ci.gif);
+		}
+		#daumSearchBox #show_q {
+			background-color: transparent;
+			border: none;
+			font: 12px Gulim, Sans-serif;
+			color: #555;
+			margin-top: 4px;
+			margin-right: 15px;
+			float: left;
+		}
+
+		#daumSearchBox #show_btn {
+			background-image : url(//i1.daumcdn.net/imgsrc.search/search_all/show/tistory/plugin/bt_search_2.gif);
+			width: 37px;
+			height: 21px;
+			float: left;
+			margin:0;
+			cursor:pointer;
+			text-indent:-1000em;
+		}
+	</style>
+<link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/plugins/TistoryProfileLayer/style.css?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2" />
+<script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/plugins/TistoryProfileLayer/profile.js?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2"></script>
+	<style type="text/css">
+		.another_category { border: 1px solid #E5E5E5; padding: 10px 10px 5px; margin:10px 0; clear: both; }
+		.another_category h4 { font-size: 12px !important; margin: 0 !important; border-bottom: 1px solid #E5E5E5 !important; padding: 2px 0 6px !important; }
+		.another_category h4 a { font-weight: bold !important; }
+		.another_category table { table-layout: fixed; border-collapse: collapse; width: 100% !important; margin-top: 10px !important; }
+		* html .another_category table { width: auto !important; }
+		*:first-child+html .another_category table { width: auto !important; }
+		.another_category th, .another_category td { padding: 0 0 4px !important; }
+		.another_category th { text-align: left; font-size: 12px !important; font-weight: normal;  word-break: break-all; overflow: hidden; line-height: 1.5; }
+		.another_category td { text-align: right; width: 80px; font-size: 11px; }
+		.another_category th a { font-weight: normal; text-decoration: none; border: none !important; }
+		.another_category th a.current{ font-weight: bold; text-decoration: none !important; border-bottom: 1px solid !important; }
+		.another_category th span { font-weight: normal; text-decoration: none; font: 10px Tahoma, Sans-serif; border: none !important; }
+
+		.another_category_color_gray, .another_category_color_gray h4 { border-color: #E5E5E5 !important; }
+		.another_category_color_gray * { color: #909090 !important; }
+		.another_category_color_gray th a.current{border-color:#909090 !important;}
+		.another_category_color_gray h4, .another_category_color_gray h4 a { color: #737373 !important; }
+
+
+		.another_category_color_red, .another_category_color_red h4 { border-color: #F6D4D3 !important;  }
+		.another_category_color_red * { color: #E86869 !important; }
+		.another_category_color_red th a.current{border-color:#E86869 !important;}
+		.another_category_color_red h4, .another_category_color_red h4 a { color: #ED0908 !important; }
+
+
+		.another_category_color_green, .another_category_color_green h4 { border-color: #CCE7C8 !important; }
+		.another_category_color_green * { color: #64C05B !important; }
+		.another_category_color_green th a.current{border-color:#64C05B !important;}
+		.another_category_color_green h4, .another_category_color_green h4 a { color: #3EA731 !important; }
+
+
+		.another_category_color_blue, .another_category_color_blue h4 { border-color: #C8DAF2 !important; }
+		.another_category_color_blue * { color: #477FD6 !important; }
+		.another_category_color_blue th a.current{border-color:#477FD6 !important;}
+		.another_category_color_blue h4, .another_category_color_blue h4 a { color: #1960CA !important; }
+
+
+		.another_category_color_violet, .another_category_color_violet h4 { border-color: #E1CEEC !important;  }
+		.another_category_color_violet * { color:#9D64C5 !important; }
+		.another_category_color_violet th a.current{border-color:#9D64C5 !important;}
+		.another_category_color_violet h4, .another_category_color_violet h4 a { color: #7E2CB5 !important; }
+	</style>
+<script type="text/javascript">
+        
+        window.TistoryBlog = {
+            basePath: "",
+            url: "https://ondolroom.tistory.com",
+            tistoryUrl: "https://ondolroom.tistory.com",
+			manageUrl: 'https://ondolroom.tistory.com/manage',
+            token: 'xCbpcEaTWI6y38Y0+qCfpA=='
+        };
+        var servicePath = "";
+        var blogURL = "";
+    </script>
+
+	<script> (function() { window.orgjQuery = window.jQuery; window.jQuery = tjQuery })()</script>
+    <script type="text/javascript" defer src=https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/script/reaction/reaction-button-container.min.js?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2></script>
+    <script> (function() { window.jQuery = window.orgjQuery; delete window.orgjQuery })()</script>
+        <script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/script/_/base.js?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2"></script>
+        <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/style/dialog.css?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2"/>
+            <link rel="stylesheet" type="text/css" href="//t1.daumcdn.net/tistory_admin/www/style/top/font.css">
+    <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/style/postBtn.css?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2"/>
+        <link rel="stylesheet" type="text/css" href="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/style/component/tistory.css?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2" />
+        <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script></head>
+
+<body id="tt-body-page">
+<script type="text/javascript">
+	(function() {
+		if (!window.T) {
+			window.T = {}
+		}
+		window.T.config = {"TOP_SSL_URL":"https:\/\/www.tistory.com","PREVIEW":false,"ROLE":"guest","PREV_PAGE":"\/266","NEXT_PAGE":"\/264","BLOG":{"isDormancy":false,"title":"Jaybon \uc758 \uc9c0\uc2dd\ucc3d\uace0"},"NEED_COMMENT_LOGIN":false,"COMMENT_LOGIN_CONFIRM_MESSAGE":"","LOGIN_URL":"https:\/\/www.tistory.com\/auth\/login\/?redirectUrl=http%3A%2F%2Fondolroom.tistory.com%2F265","DEFAULT_URL":"https:\/\/ondolroom.tistory.com","USER":{"name":null,"homepage":null},"ROLE_GROUP":"visitor","SUBSCRIPTION":{"status":"none","isConnected":false,"isProcessing":false,"isPending":false,"isWait":false,"isNone":true},"IS_LOGIN":false,"HAS_BLOG":false,"TOP_URL":"https:\/\/www.tistory.com","JOIN_URL":"https:\/\/www.tistory.com\/member\/join"};
+		window.appInfo = {"domain":"tistory.com","topUrl":"https:\/\/www.tistory.com","loginUrl":"https:\/\/www.tistory.com\/auth\/login","logoutUrl":"https:\/\/www.tistory.com\/auth\/logout"};
+
+        window.initData = {};
+        
+	})();
+</script>
+
+<script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/script/blog/common.js?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2"></script>
+<div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
+<div id="wrap">
+	<div id="sidebar">
+		<div class="blank"></div>
+		<h1><a href="/">Jaybon 의 지식창고</a></h1>
+		 <!-- Search -->
+			<div class="widget search text-center">
+				
+				<input class="search" placeholder="press enter to search…" type="text" name="search" value="" onkeypress="if (event.keyCode == 13) { try{window.location.href='/search/'+looseURIEncode(document.getElementsByName('search')[0].value);document.getElementsByName('search')[0].value='';return false;}catch(e){} }" />
+				
+			</div>
+			
+			<div class="widget category"> <!-- Category -->
+				<ul class="tt_category">
+	<li class="">
+		<a class="link_tit" href="/category">
+			분류 전체보기							<span class="c_cnt">(669)</span>
+			
+							<img src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/image/category/new_ico_3.gif?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2" alt="N" style='vertical-align:middle;padding-left:2px;' />
+					</a>
+
+				<ul class="category_list">
+							<li class="">
+					<a class="link_item" href="/category/%EB%82%99%EC%84%9C%EC%9E%A5">
+						낙서장													<span class="c_cnt">(121)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/Java">
+						Java													<span class="c_cnt">(108)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/kotlin">
+						kotlin													<span class="c_cnt">(3)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C">
+						안드로이드													<span class="c_cnt">(63)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/Web">
+						Web													<span class="c_cnt">(291)</span>
+						
+													<img src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/image/category/new_ico_3.gif?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2" alt="N" style='vertical-align:middle;padding-left:2px;' />
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/Web/Html_Css">
+									Html_Css
+																			<span class="c_cnt">(50)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/Web/JavaScript">
+									JavaScript
+																			<span class="c_cnt">(62)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/Web/Jsp">
+									Jsp
+																			<span class="c_cnt">(90)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/Web/Spring%20Boot">
+									Spring Boot
+																			<span class="c_cnt">(58)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/Web/ReactJS">
+									ReactJS
+																			<span class="c_cnt">(30)</span>
+									
+																			<img src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/image/category/new_ico_3.gif?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2" alt="N" style='vertical-align:middle;padding-left:2px;' />
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EB%A6%AC%EB%88%85%EC%8A%A4">
+						리눅스													<span class="c_cnt">(7)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4">
+						데이터베이스													<span class="c_cnt">(68)</span>
+						
+											</a>
+
+										<ul class="sub_category_list">
+													<li class="">
+								<a class="link_sub_item" href="/category/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/oracleSQL">
+									oracleSQL
+																			<span class="c_cnt">(53)</span>
+									
+																	</a>
+							</li>
+													<li class="">
+								<a class="link_sub_item" href="/category/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/mySQL">
+									mySQL
+																			<span class="c_cnt">(11)</span>
+									
+																	</a>
+							</li>
+											</ul>
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/Python">
+						Python													<span class="c_cnt">(0)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EB%8F%84%EC%BB%A4">
+						도커													<span class="c_cnt">(1)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EB%B2%88%EC%97%AD">
+						번역													<span class="c_cnt">(0)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%9C%A0%ED%8B%B8">
+						유틸													<span class="c_cnt">(4)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EC%A0%95%EB%B3%B4">
+						정보													<span class="c_cnt">(1)</span>
+						
+											</a>
+
+					
+				</li>
+							<li class="">
+					<a class="link_item" href="/category/%EA%B2%8C%EC%9E%84">
+						게임													<span class="c_cnt">(0)</span>
+						
+											</a>
+
+					
+				</li>
+					</ul>
+			</li>
+</ul>
+			</div>
+			
+			<div class="widget"> <!-- Blog Menu -->
+				<ul>		<li class="t_menu_home first">
+			<a href="/">HOME</a>
+		</li>
+				<li class="t_menu_tag">
+			<a href="/tag">TAG</a>
+		</li>
+				<li class="t_menu_medialog">
+			<a href="/media">MEDIA LOG</a>
+		</li>
+				<li class="t_menu_guestbook">
+			<a href="/guestbook">GUEST BOOK</a>
+		</li>
+				<li class="t_menu_admin">
+			<a href="/admin">ADMIN</a>
+		</li>
+				<li class="t_menu_write last">
+			<a href="/gateway/entry/post">WRITE</a>
+		</li>
+		</ul>
+			</div>
+			 <!-- Notice -->
+			
+			<div class="widget">
+				<ul>
+					
+				</ul>
+			</div>
+			
+			
+			<div class="widget"> <!-- Recent Comments -->
+				<ul id="recentComments">
+					<li><a href="/284#comment14519629" title="Jaybon〃04.02">안녕하세요.
+지금은 개발툴을 인텔리제⋯</a></li>
+<li><a href="/284#comment14516072" title="안녕하세요〃03.30">안녕하세요 혹시 자바 테마나 글씨체 뭐⋯</a></li>
+<li><a href="/304#comment14501333" title="Jaybon〃03.16">네 맞습니다. 설명을위해서 나누었습니⋯</a></li>
+<li><a href="/304#comment14479595" title="쿠키런2〃02.24">선생님 질문이있는데 swing화면은 마지⋯</a></li>
+<li><a href="/315#comment14352309" title="djh20〃2020">재미있는 글 매우 잘 보고 갑니다</a></li>
+				</ul>
+			</div>
+			 <!-- Counter -->
+			<div class="widget counter text-center">
+				<span class="yesterday">124</span> /
+				<span class="today">180</span> /
+				<span class="total">68,175</span>
+			</div>
+			
+		<div class="blank"></div>
+	</div>
+
+	<div id="content">
+		<div id="content-inner">
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div id="head">
+				<h2><a href="/265">자바 프로그램을 함수화(모듈화) 하기 (프로젝트 대비)</a></h2>
+				<div class="date">2020. 4. 25. 13:28</div>
+			</div>
+
+			<div id="body" class="entry">
+				<div class="tag_label">
+				
+				</div>
+
+				<div class="article">
+				<div class="contents_style"><p>*해당 문서는 본인의 사견이 포함되어 있으므로, 정석이 아닌 점을 참고해주세요.</p>
+<h2 data-ke-size="size26">프로그램과 모듈</h2>
+<h3 data-ke-size="size23">1. 프로그램</h3>
+<p>main이 포함되어 있어서 실행이 가능한 코드를 <b>프로그램</b>이라고 한다.</p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/7N7H4/btqDHrGg7D5/S0RDm0aG6SIQLSyjy0MB4k/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/7N7H4/btqDHrGg7D5/S0RDm0aG6SIQLSyjy0MB4k/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F7N7H4%2FbtqDHrGg7D5%2FS0RDm0aG6SIQLSyjy0MB4k%2Fimg.png' data-origin-width="0" data-origin-height="0"></span></figure></p>
+<p>&nbsp;</p>
+<h3 data-ke-size="size23">2. 모듈</h3>
+<p>아래와 같이 main이 아닌 함수만 있어서 독립적으로 실행하지 못하는 코드를 <b>모듈</b>이라고 한다.</p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/c5fUgX/btqDImLfT4k/TXCOhXqkskpAT6xvE92A00/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/c5fUgX/btqDImLfT4k/TXCOhXqkskpAT6xvE92A00/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fc5fUgX%2FbtqDImLfT4k%2FTXCOhXqkskpAT6xvE92A00%2Fimg.png' data-origin-width="0" data-origin-height="0"></span></figure></p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26">모듈을 이용하는 방법</h2>
+<h3 data-ke-size="size23">1. 같은 파일 내에 있는 모듈</h3>
+<p>main에서 해당 기능이 있는 <b>클래스.메서드()</b> <span style="color: #333333;">를 이용하여 호출한다.</span></p>
+<p><span style="color: #333333;">(이 파일에는 모듈도 있고 실행 시킬 수 있는 main이 있으니, 결과적으로 프로그램이다. )</span></p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/bkRg7r/btqDGH3F3hj/xr9x4QFC8dKlA2KTRNmz00/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/bkRg7r/btqDGH3F3hj/xr9x4QFC8dKlA2KTRNmz00/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbkRg7r%2FbtqDGH3F3hj%2Fxr9x4QFC8dKlA2KTRNmz00%2Fimg.png' data-origin-width="0" data-origin-height="0"></span></figure></p>
+<p>&nbsp;</p>
+<h3 data-ke-size="size23">2. 패키지는 같지만 다른 파일 내에 있는 모듈</h3>
+<p>아래 그림처럼 패키지는 같지만 다른 파일로 나뉘어 있을 경우</p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/QtwAS/btqDFo4K8IH/4NbtJZUrRzLHe0IZoueI50/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/QtwAS/btqDFo4K8IH/4NbtJZUrRzLHe0IZoueI50/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FQtwAS%2FbtqDFo4K8IH%2F4NbtJZUrRzLHe0IZoueI50%2Fimg.png' data-origin-width="0" data-origin-height="0"></span></figure></p>
+<p>같은 파일에 있는 모듈을 사용하는 것 처럼 쉽게 이용가능하다.</p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/lr7R7/btqDJfrjdMt/kqKit2IyFODSO4tR804mPk/img.png' data-lightbox='lightbox' data-alt='Say.java'><img src='https://blog.kakaocdn.net/dn/lr7R7/btqDJfrjdMt/kqKit2IyFODSO4tR804mPk/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Flr7R7%2FbtqDJfrjdMt%2FkqKit2IyFODSO4tR804mPk%2Fimg.png' data-origin-width="0" data-origin-height="0"></span><figcaption>Say.java</figcaption></figure><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/WtjpS/btqDFqhadhq/sEkPosuJnKjCbpES1fPY7K/img.png' data-lightbox='lightbox' data-alt='Function1.java'><img src='https://blog.kakaocdn.net/dn/WtjpS/btqDFqhadhq/sEkPosuJnKjCbpES1fPY7K/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FWtjpS%2FbtqDFqhadhq%2FsEkPosuJnKjCbpES1fPY7K%2Fimg.png' data-origin-width="0" data-origin-height="0"></span><figcaption>Function1.java</figcaption></figure></p>
+<p>&nbsp;</p>
+<h3 data-ke-size="size23">3. 패키지가 다른 모듈</h3>
+<p><span style="color: #333333;">아래 그림처럼 패키지가 다른 경우</span></p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/ql2Jp/btqDJgwZtk8/lYkTkDLOnCcLEd9j6H9zf1/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/ql2Jp/btqDJgwZtk8/lYkTkDLOnCcLEd9j6H9zf1/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fql2Jp%2FbtqDJgwZtk8%2FlYkTkDLOnCcLEd9j6H9zf1%2Fimg.png' data-origin-width="0" data-origin-height="0"></span></figure></p>
+<p>모듈이 될 클래스나 기능들은 public으로 작성해야 불러올 수 있다.&nbsp;</p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/czpxXO/btqDF1BxI8J/M6Y4219Pf2RPNvzYchOUKk/img.png' data-lightbox='lightbox' data-alt='exModule.Say.java'><img src='https://blog.kakaocdn.net/dn/czpxXO/btqDF1BxI8J/M6Y4219Pf2RPNvzYchOUKk/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FczpxXO%2FbtqDF1BxI8J%2FM6Y4219Pf2RPNvzYchOUKk%2Fimg.png' data-origin-width="0" data-origin-height="0"></span><figcaption>exModule.Say.java</figcaption></figure></p>
+<p>&nbsp;</p>
+<p>main이 있는 파일에서는 모듈을 import 해와야 한다.</p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/dIvMjs/btqDHsFhK06/NGzWmFJAB9vkVL7F6GHVEK/img.png' data-lightbox='lightbox' data-alt='example.Function1.java'><img src='https://blog.kakaocdn.net/dn/dIvMjs/btqDHsFhK06/NGzWmFJAB9vkVL7F6GHVEK/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdIvMjs%2FbtqDHsFhK06%2FNGzWmFJAB9vkVL7F6GHVEK%2Fimg.png' data-origin-width="0" data-origin-height="0"></span><figcaption>example.Function1.java</figcaption></figure></p>
+<p>&nbsp;</p>
+<p>*exModule에 있는 코드에서 public을 제거 해보고 테스트도 해보자.</p>
+<p>&nbsp;</p>
+<h2 data-ke-size="size26">ps. 생성자를 함수처럼 사용 가능하다</h2>
+<p>아래 그림과 같이 Say의 생성자에 기능을 넣고&nbsp;</p>
+<p>main에서 해당 클래스를 인스턴스화 하면 생성자가 실행 된다.</p>
+<p><figure class='imageblock alignLeft' data-origin-width="0" data-origin-height="0"><span data-url='https://blog.kakaocdn.net/dn/brGq0U/btqDHrM0aqS/ZPea5rCK01ftGoC1wp5Cck/img.png' data-lightbox='lightbox' data-alt=''><img src='https://blog.kakaocdn.net/dn/brGq0U/btqDHrM0aqS/ZPea5rCK01ftGoC1wp5Cck/img.png' srcset='https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbrGq0U%2FbtqDHrM0aqS%2FZPea5rCK01ftGoC1wp5Cck%2Fimg.png' data-origin-width="0" data-origin-height="0"></span></figure></p><div class="container_postbtn #post_button_group">
+    <div class="postbtn_like">
+        
+<script>
+    window.ReactionButtonType = 'reaction';
+    window.ReactionApiUrl = '//ondolroom.tistory.com/reaction';
+    window.ReactionReqBody = {
+        entryId: 265    }
+</script>
+<div class="wrap_btn" id=reaction-265></div>
+<script src=https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/script/reaction/reaction-button-container.min.js?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2></script>
+        <div class="wrap_btn wrap_btn_share">
+    <button type="button" class="btn_post sns_btn btn_share" data-thumbnail-url="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F7N7H4%2FbtqDHrGg7D5%2FS0RDm0aG6SIQLSyjy0MB4k%2Fimg.png" data-title="자바 프로그램을 함수화(모듈화) 하기 (프로젝트 대비)" data-description="*해당 문서는 본인의 사견이 포함되어 있으므로, 정석이 아닌 점을 참고해주세요. 프로그램과 모듈 1. 프로그램 main이 포함되어 있어서 실행이 가능한 코드를 프로그램이라고 한다.  2. 모듈 아래와 같이 main이.." data-profile-image="https://t1.daumcdn.net/cfile/tistory/133256144C3CD3FB14" data-profile-name="Jaybon" data-pc-url="https://ondolroom.tistory.com/265" data-relative-pc-url="/265" data-blog-title="Jaybon 의 지식창고">
+        <span class="ico_postbtn ico_share">공유하기</span>
+    </button>
+</div>
+                <div class="wrap_btn wrap_btn_etc" data-entry-id="265" data-entry-visibility="public" data-category-visibility="public">
+    <button type="button" class="btn_post btn_etc2"><span class="ico_postbtn ico_etc">글 요소</span></button>
+</div>
+    </div>
+    <button type="button" class="btn_menu_toolbar btn_subscription  #subscribe" data-blog-id="597870" data-url="https://ondolroom.tistory.com/265" data-device="web_pc">
+    <em class="txt_state">구독하기</em>
+    <strong class="txt_tool_id">Jaybon 의 지식창고</strong>
+    <span class="img_common_tistory ico_check_type1"></span>
+</button>
+    <div class="postbtn_ccl" data-ccl-type="">
+    <a href="https://creativecommons.org/licenses//4.0/deed.ko" target="_blank" class="link_ccl">
+        <span class="bundle_ccl">
+                    </span>
+    </a>
+</div>
+    <!--
+<rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <Work rdf:about="">
+        <license rdf:resource="http://creativecommons.org/licenses/by-/2.0/kr/" />
+    </Work>
+    <License rdf:about="http://creativecommons.org/licenses/by-/">
+        <permits rdf:resource="http://web.resource.org/cc/Reproduction"/>
+        <permits rdf:resource="http://web.resource.org/cc/Distribution"/>
+        <requires rdf:resource="http://web.resource.org/cc/Notice"/>
+        <requires rdf:resource="http://web.resource.org/cc/Attribution"/>
+                    </License>
+</rdf:RDF>
+-->
+</div><div class="another_category another_category_color_gray">
+<h4>'<a href="/category/Java">Java</a>' 카테고리의 다른 글</h4>
+<table>
+<tr>
+<th>
+<a href="/267?category=295631" >자바 공공데이터 + SWING 연동하기(프로젝트 대비)</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2020.04.25</td>
+</tr>
+<tr>
+<th>
+<a href="/266?category=295631" >자바 공공데이터를 사용하기 (프로젝트 대비)</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2020.04.25</td>
+</tr>
+<tr>
+<th>
+<a href="/265?category=295631"  class ="current" >자바 프로그램을 함수화(모듈화) 하기 (프로젝트 대비)</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2020.04.25</td>
+</tr>
+<tr>
+<th>
+<a href="/264?category=295631" >스윙 컴포넌트 - 버튼, 리스너</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2020.04.24</td>
+</tr>
+<tr>
+<th>
+<a href="/263?category=295631" >자바 다양한 시간 포맷팅 방법</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2020.04.24</td>
+</tr>
+<tr>
+<th>
+<a href="/262?category=295631" >자바 HashSet // TreeSet</a>&nbsp;&nbsp;<span>(0)</span>
+</th>
+<td>
+2020.04.24</td>
+</tr>
+</table></div></div>
+				</div>
+
+				
+
+				<div id="entry265Comment">
+				<div id="communicate">
+				<form method="post" action="/comment/add/265" onsubmit="return false" style="margin: 0">
+					<div class="communicateWrite">
+					
+						
+						<div class="name guest">
+							<label for="name">NAME</label>
+							<input id="name" type="text" name="name" value="" />
+						</div>
+						<div class="password guest">
+							<label for="password">PASSWORD</label>
+							<input id="password" type="password" maxlength="8" name="password" value="" />
+						</div>
+						<div class="homepage guest">
+							<label for="homepage">HOMEPAGE</label>
+							<input id="homepage" type="text" name="homepage" value="http://"/>
+						</div>
+						
+					
+						<div class="textarea"><textarea name="comment" rows="10" cols="50"></textarea></div>
+						<div class="submit"><input type="submit" value="WRITE" onclick="addComment(this, 265); return false;" /></div>
+						<div class="secret">
+							<label for="secret">SECRET</label>
+							<input id="secret" type="checkbox" name="" />
+						</div>
+						<div class="clear"></div>
+					</div>
+				</form>
+
+				
+				</div>
+				</div><script type="text/javascript">loadedComments[265]=true;findFragmentAndHighlight(265)</script>
+			</div>
+			
+
+			
+
+			<div id="paging">
+			
+				<a  href='/266' class="prev ">PREV</a>
+				<a class="numbox"  href='/862'><span >1</span></a><a class="numbox" ><span >&middot;&middot;&middot;</span></a><a class="numbox"  href='/269'><span >443</span></a><a class="numbox"  href='/268'><span >444</span></a><a class="numbox"  href='/267'><span >445</span></a><a class="numbox"  href='/266'><span >446</span></a><a class="numbox" ><span class="selected">447</span></a><a class="numbox"  href='/264'><span >448</span></a><a class="numbox"  href='/263'><span >449</span></a><a class="numbox"  href='/262'><span >450</span></a><a class="numbox"  href='/261'><span >451</span></a><a class="numbox" ><span >&middot;&middot;&middot;</span></a><a class="numbox"  href='/12'><span >669</span></a>
+				<a  href='/264' class="next ">NEXT</a>
+			
+			</div>
+
+			<s_sidebar_element>
+			<div id="recent-post">
+				<h4><a href="/category">+ Recent posts</a></h4>
+				<ul>
+					
+					<li class="box">
+						<a href="/862" class="thumb">
+							<img src="" onerror="this.src='https://tistory2.daumcdn.net/tistory/597870/skin/images/blank2.png'" alt="post image" />
+						<span class="title">리액트에러 해결   A compone⋯</span>
+						</a>
+					</li>
+					
+
+					<li class="box">
+						<a href="/860" class="thumb">
+							<img src="https://img1.daumcdn.net/thumb/R750x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FLQwra%2Fbtq1NtgidcK%2FMdcyxEDtFG8oNGNcIF1V3k%2Fimg.png" onerror="this.src='https://tistory2.daumcdn.net/tistory/597870/skin/images/blank2.png'" alt="post image" />
+						<span class="title">fcm push 올 경우 뱃지 변경</span>
+						</a>
+					</li>
+					
+
+					<li class="box">
+						<a href="/859" class="thumb">
+							<img src="" onerror="this.src='https://tistory2.daumcdn.net/tistory/597870/skin/images/blank2.png'" alt="post image" />
+						<span class="title">라이브데이터 LiveData 장점</span>
+						</a>
+					</li>
+					
+
+					<li class="box">
+						<a href="/857" class="thumb">
+							<img src="" onerror="this.src='https://tistory2.daumcdn.net/tistory/597870/skin/images/blank2.png'" alt="post image" />
+						<span class="title">intellij 인텔리제이 eslint⋯</span>
+						</a>
+					</li>
+					
+					<div class="clear"></div>
+				</ul>
+			</div>
+			</s_sidebar_element>
+
+			<div class="clear"></div>
+
+			<div id="foot">
+				<div class="powered">Powered by <a href="http://www.tistory.com/" target="_blank">Tistory</a>, Designed by <a href="http://wallel.com/" target="_blank">wallel</a></div>
+				<div class="social">
+					<a href="https://ondolroom.tistory.com/rss" target="_blank">Rss Feed</a> and
+					<a href="https://www.twitter.com/" target="_blank">Twitter</a>,
+					<a href="https://www.facebook.com/" target="_blank">Facebook</a>,
+					<a href="https://www.youtube.com/" target="_blank">Youtube</a>,
+					<a href="https://plus.google.com/" target="_blank">Google+</a>
+				</div>
+			</div>
+		</div> <!-- content-inner close -->
+	</div> <!-- content close -->
+</div> <!-- wrap close -->
+
+
+<div id="sidebar-toggle"><i class="icon-reorder"></i></div>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://tistory2.daumcdn.net/tistory/597870/skin/images/common.js"></script>
+<script src="https://tistory2.daumcdn.net/tistory/597870/skin/images/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+$(document).ready(function () {
+	if ($('body').width() > "960") {
+		$("#sidebar").mCustomScrollbar({
+			theme: "dark-thin",
+			autoHideScrollbar: "true"
+		});
+	};
+});
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/kotlin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/swift.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/go.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/scala.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/r.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script><script src="//search1.daumcdn.net/search/statics/common/js/g/search_dragselection.min.js"></script>
+            <script type="text/javascript" src="//t1.daumcdn.net/tiara/js/v1/tiara.min.js"></script>
+            <script type="text/javascript">window.tiara = {"svcDomain":"user.tistory.com","section":"\uae00\ubdf0","trackPage":"\uae00\ubdf0_\ubcf4\uae30","page":"\uae00\ubdf0","key":"597870-265","customProps":{"userId":0,"blogId":"597870","role":"guest","filterTarget":false,"trackPage":"\uae00\ubdf0_\ubcf4\uae30","entryId":"265"},"entry":{"entryId":"265","categoryName":"Java","categoryId":"295631","author":"502754","authorId":"502754","image":"502754","plink":"\/265","tags":[],"key":"597870-265"},"sentryDsn":"https:\/\/a53520229cd744e798d42900d76b0e2a@aem-collector.daumkakao.io\/713","kakaoAppKey":"b8aef3eeb03fa312b81795386484f051","appUserId":null};</script>
+            <script type="text/javascript" src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-364c9682d032414ba89c8d8eedf9723c548237d2/blogs/script/tiara/tiara.min.js?_version_=tistory-364c9682d032414ba89c8d8eedf9723c548237d2" defer></script>
+                        <script type="text/javascript">
+                window.roosevelt_params_queue = window.roosevelt_params_queue || [{channel_id: 'dk', channel_label: 'tistory'}];
+            </script>
+            <script type="text/javascript" src="//t1.daumcdn.net/midas/rt/dk_bt/roosevelt_dk_bt.js" async></script><script type="text/javascript">if(window.console!=undefined){setTimeout(console.log.bind(console,"%cTISTORY","font:8em Arial;color:#EC6521;font-weight:bold"),0);setTimeout(console.log.bind(console,"%c  나를 표현하는 블로그","font:2em sans-serif;color:#333;"),0);}</script><iframe style="position:absolute;width:1px;height:1px;left:-100px;top:-100px" src="//ondolroom.tistory.com/api" id="editEntry"></iframe><div id="tistoryEtcLayer" class="layer_post"></div><div id="tistorySnsLayer" class="layer_post"></div></body>
+</html>

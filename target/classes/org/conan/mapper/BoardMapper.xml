@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.conan.mapper.BoardMapper">
+	<select id="getList" resultType="org.conan.domain.BoardVO">
+		select * from tbl_board where
+		bno>0
+	</select>
+	<!-- 인설트 문에 ? 대신에 #{변수이름(대소문자 구분함, 자바필드이기때문)}, 넣으면 setString등 사용X -->
+	<insert id="insert">
+		insert into tbl_board(bno, title, content, writer)
+		values(seq_board.nextval, #{title},#{content},#{writer})
+	</insert>
+
+<update id="updateReplyCnt">
+update tbl_board
+set replycnt = replycnt+#{amount}
+where bno =#{bno}
+</update>
+
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+		insert into tbl_board(bno, title, content, writer) values(#{bno},
+		#{title}, #{content}, #{writer})
+	</insert>
+
+	<select id="read" resultType="org.conan.domain.BoardVO">
+		select * from tbl_board where
+		bno=${bno}
+	</select>
+
+	<delete id="delete">
+		delete from tbl_board where bno=#{bno}
+	</delete>
+
+	<update id="update">
+		update tbl_board set title=#{title},
+		content=#{content}, updateDate=sysdate where bno=#{bno}
+	</update>
+
+	<sql id='criteria'>
+	<trim prefix="(" suffix=")AND" prefixOverrides="OR">
+			<foreach item='type' collection='typeArr'>
+				<trim prefix='OR'>
+					<choose>
+						<when test="type=='T'.toString()">title like '%'||#{keyword}||'%'</when>
+						<when test="type=='C'.toString()">content like '%'||#{keyword}||'%'</when>
+						<when test="type=='W'.toString()">writer like '%'||#{keyword}||'%'</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getListWithPaging"
+		resultType="org.conan.domain.BoardVO">
+<![CDATA[select * from(
+select /*+INDEX_DESC(tbl_board pk_board)*/
+rownum rn,bno,title,content,writer,regdate,updateDate,replyCnt
+from tbl_board
+where]]>
+		<include refid='criteria'></include>
+<![CDATA[ rownum <=#{pageNum}*#{amount}
+)
+where rn>(#{pageNum}-1)*#{amount}]]>
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from
+		tbl_board
+		where 
+		<include refid='criteria'></include>
+		bno>0
+	</select>
+
+</mapper>
